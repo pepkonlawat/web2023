@@ -16,6 +16,11 @@
       integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
       crossorigin="anonymous"
     />
+    <!-- Import icon -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"
+    />
     <!--  IBM Plex Sans Thai Font  -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -23,6 +28,7 @@
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;700&display=swap"
       rel="stylesheet"
     />
+
     <!--  internal css -->
     <style>
       body {
@@ -30,13 +36,87 @@
         -webkit-font-smoothing: antialiased;
       }
       .navbar {
-        background: rgba(217, 217, 217, 0.06);
-        backdrop-filter: blur(13.5px);
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(50px);
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+      }
+      .navbar-center {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .introduce {
+        padding-top: 100px;
+        padding-bottom: 100px;
+        background-image: url("https://img.freepik.com/free-vector/hand-drawn-minimal-background_23-2149007819.jpg?w=2000");
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+
+      #my-info {
+        text-align: center;
+      }
+      #my-img {
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
       .carousel-caption {
         background: rgba(0, 0, 0, 0.6);
         border-radius: 20px;
+      }
+      .my-photo {
+        filter: drop-shadow(0px 4px 20px rgba(0, 0, 0, 0.25));
+      }
+      .personality {
+        background-image: url("https://www.16personalities.com/static/images/personality-types/headers/diplomats_Advocate_INFJ_personality_header.svg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+        height: 500px;
+        padding: 180px 0;
+      }
+      .per-text {
+        color: white;
+        padding: 20px;
+        margin: auto;
+        top: 50%;
+        text-align: center;
+        background: rgba(39, 125, 80, 0.7);
+      }
+      .education {
+        background-image: url("https://cdna.artstation.com/p/assets/images/images/025/474/486/large/nopparuj-plamjaroenphon-4.jpg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        height: 600px;
+        padding: 100px 0;
+      }
+      .edu-title {
+        color: #ffffff;
+        padding-bottom: 20px;
+        text-shadow: 0px 4px 4px rgba(0, 0, 0.5, 1);
+      }
+      #fav-image {
+        width: 100%;
+        height: auto;
+      }
+      .my-fav-playlist {
+        background-image: url("https://media.istockphoto.com/id/886429698/photo/guy-jamming-acoustic-guitar-with-piano-player-background.jpg?s=612x612&w=0&k=20&c=7npVlz9V3qRkBPbJlwDkNMctWD_XwTJvtUycJyro5M0=");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        height: 500px;
+      }
+      @media (max-width: 992px) {
+        .education {
+          min-height: 900px;
+        }
+      }
+      @media (max-width: 768px) {
+        .education {
+          min-height: 1200px;
+        }
       }
     </style>
   </head>
@@ -44,68 +124,266 @@
   <body>
     <header>
       <!-- navbar -->
-      <nav class="navbar navbar-expand-sm navbar-light">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button
-          class="navbar-toggler d-lg-none"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#collapsibleNavId"
-          aria-controls="collapsibleNavId"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        ></button>
-        <div class="collapse navbar-collapse" id="collapsibleNavId">
-          <ul class="navbar-nav me-auto mt-2 mt-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" href="#" aria-current="page"
-                >Home <span class="visually-hidden">(current)</span></a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                id="dropdownId"
-                data-bs-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-                >Dropdown</a
-              >
-              <div class="dropdown-menu" aria-labelledby="dropdownId">
-                <a class="dropdown-item" href="#">Action 1</a>
-                <a class="dropdown-item" href="#">Action 2</a>
-              </div>
-            </li>
-          </ul>
+      <nav class="navbar fixed-top navbar-expand-md">
+        <div class="container">
+          <button
+            class="navbar-toggler d-lg-none"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapsibleNavId"
+            aria-controls="collapsibleNavId"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+              <li>
+                <a class="nav-link" href="#">แนะนำตัว</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#personality">นิสัย</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#education">ประวัติการศึกษา</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#hobby">สิ่งที่สนใจ</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#footer">ติดต่อฉัน</a>
+              </li>
+            </ul>
+          </div>
         </div>
       </nav>
-      <!-- ----แนะนำตัว ประวัติการศึกษา นิสัย ประวัติการศึกษา ความชอบและสิ่งที่สนใจ ติดต่อฉัน  -->
+      <!-- ----แนะนำตัว ประวัติการศึกษา นิสัย  ความชอบและสิ่งที่สนใจ ติดต่อฉัน  -->
     </header>
     <main>
       <!-- name photo description -->
       <div class="introduce">
-        <img
-          src="https://lh5.googleusercontent.com/a31pxCMXYGToLEhBeg5n4WkYs72065O2AiQH9QdMB56aTVKxU7XIlMlzZyWgFb8Ec5g=w2400"
-        />
+        <div class="container">
+          <div class="row justify-content-center align-items-center g-2">
+            <div id="my-img" class="col-lg-6 col-md-12">
+              <img
+                class="my-photo"
+                src="https://lh5.googleusercontent.com/a31pxCMXYGToLEhBeg5n4WkYs72065O2AiQH9QdMB56aTVKxU7XIlMlzZyWgFb8Ec5g=w2400"
+              />
+            </div>
+            <div id="my-info" class="col-lg-6 col-md-12">
+              <h1>กลวัชร คธาเพ็ชร</h1>
+              <h5>นักศึกษาวิศวกรรมคอมพิวเตอร์ มหาวิทยาลัยมหิดล</h5>
+              <br />
+              <h6>
+                ผมมีความสนใจด้านการพัฒนาซอฟแวร์โดยเฉพาะการออกแบบด้านUX/UI
+                อีกทั้งยังสนใจทางด้าน
+              </h6>
+              <h6>Digital Forensic</h6>
+            </div>
+          </div>
+        </div>
       </div>
       <!-- personality -->
-      <div class="personality"></div>
+      <div id="personality" class="personality">
+        <div class="per-text">
+          <h1>ผู้แนะนำ</h1>
+          <h5>บุคคลิกภาพ</h5>
+          <h2>INFJ-A / INFJ-T</h2>
+        </div>
+      </div>
       <!-- education  -->
-      <div class="education"></div>
+      <div id="education" class="education">
+        <h2 class="edu-title d-flex justify-content-center">ประวัติการศึกษา</h2>
+        <div class="row justify-content-center align-items-center g-2">
+          <div
+            class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-center"
+          >
+            <div class="card" style="width: 18rem">
+              <img
+                src="https://scontent.fbkk3-4.fna.fbcdn.net/v/t39.30808-6/305498950_479032694234640_7914982348295376323_n.jpg?stp=dst-jpg_p640x640&_nc_cat=105&ccb=1-7&_nc_sid=e3f864&_nc_eui2=AeFvvAHw8gUu_GKNy4E0znFV6UAlhMRhtrHpQCWExGG2sewtjdEsnB1aDTQYu57Qb7N688pY5CoCBMWWtnTZrG5g&_nc_ohc=p8lKsFFONIkAX8UXsEH&_nc_zt=23&_nc_ht=scontent.fbkk3-4.fna&oh=00_AfBCE_A4CwRINmymGU7e-9ZTl9p24pQ3E0M_ANnRHp3B2A&oe=63C99E11"
+                class="card-img-top"
+                alt="..."
+              />
+              <div class="card-body">
+                <h5 class="card-title">ประถมศึกษาปีที่4-6</h5>
+                <p class="card-text">โรงเรียนอนุบาลระนอง</p>
+                <a
+                  href="https://web.facebook.com/anubanranongschool/?_rdc=1&_rdr"
+                  target="_blank"
+                  class="btn btn-primary"
+                  >ข้อมูลเพิ่มเติม</a
+                >
+              </div>
+            </div>
+          </div>
+          <div
+            class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-center"
+          >
+            <div class="card" style="width: 18rem">
+              <img
+                src="https://scontent.fbkk3-3.fna.fbcdn.net/v/t39.30808-6/273844945_3012786535642777_4978290432672649014_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=19026a&_nc_eui2=AeEuxxrKN5weKlYIDEFG2DLBYyvAN7aSmGpjK8A3tpKYattFEjGToeSkyACLfrpO75VgurOPJgfxWrtWAaNCZWhw&_nc_ohc=dqXPE_nWp2AAX9EY6mU&_nc_zt=23&_nc_ht=scontent.fbkk3-3.fna&oh=00_AfCR_C-vrCMgjA5Jq0gKkldxuF53CpSXeavFn_GSaD-fiQ&oe=63C93508"
+                class="card-img-top"
+                alt="..."
+              />
+              <div class="card-body">
+                <h5 class="card-title">มัธยมศึกษาปีที่1-6</h5>
+                <p class="card-text">โรงเรียนพิชัยรัตนาคาร</p>
+                <a
+                  href="https://web.facebook.com/Pcrs.ac.th/?_rdc=1&_rdr"
+                  target="_blank"
+                  class="btn btn-primary"
+                  >ข้อมูลเพิ่มเติม</a
+                >
+              </div>
+            </div>
+          </div>
+          <div
+            class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-center"
+          >
+            <div class="card" style="width: 18rem">
+              <img
+                src="https://www.eg.mahidol.ac.th/qa/images/stories/history/history_1.jpg"
+                class="card-img-top"
+                alt="..."
+              />
+              <div class="card-body">
+                <h5 class="card-title">
+                  นักศึกษาวิศวกรรมคอมพิวเตอร์ปีที่1-ปัจจุบัน
+                </h5>
+                <p class="card-text">มหาวิทยาลัยมหิดล</p>
+                <a
+                  href="https://www.eg.mahidol.ac.th/dept/egco/"
+                  class="btn btn-primary"
+                  >ข้อมูลเพิ่มเติม</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <!-- hobby -->
-      <!-- ----playlist -->
-      <div class="playlist"></div>
-      <!-- ----favorite photo  -->
-      <div class="fav_photo"></div>
-      <!-- ----Archetecture -->
-      <div class="Archetecture"></div>
+      <div id="hobby" class="hobby">
+        <div id="fav-image" class="carousel slide" data-bs-ride="carousel">
+          <ol class="carousel-indicators">
+            <li
+              data-bs-target="#fav-image"
+              data-bs-slide-to="0"
+              class="active"
+              aria-current="true"
+              aria-label="First slide"
+            ></li>
+            <li
+              data-bs-target="#fav-image"
+              data-bs-slide-to="1"
+              aria-label="Second slide"
+            ></li>
+            <li
+              data-bs-target="#fav-image"
+              data-bs-slide-to="2"
+              aria-label="Third slide"
+            ></li>
+          </ol>
+          <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active">
+              <img
+                src="https://images.squarespace-cdn.com/content/v1/5fd2c5e6fed4e01eff0f7c33/1607812449559-2NUQIPE58926PHJFIZ37/sofia_sebastian_02.jpg?format=750w"
+                class="w-100 d-block"
+                alt="First slide"
+              />
+              <div class="carousel-caption d-none d-md-block">
+                <h3>รูปที่ชอบ</h3>
+                <p>Sofia Sebastian</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img
+                src="https://photos-optimized.lensculture.com/original/9dd27a39-b766-4f24-a336-97b3b9b75365.jpg"
+                class="w-100 d-block"
+                alt="Second slide"
+              />
+              <div class="carousel-caption d-none d-md-block">
+                <h3>รูปที่ชอบ</h3>
+                <p>Artyt Sun Lerdrakmongkol</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img
+                src="https://www.eyeshotstreetphotography.com/wp-content/uploads/2018/07/Tang-Tawanwad-Wanavit-1_web-1000x750.jpg"
+                class="w-100 d-block"
+                alt="Third slide"
+              />
+              <div class="carousel-caption d-none d-md-block">
+                <h3>รูปที่ชอบ</h3>
+                <p>Tawanwad Tang Wanavi</p>
+              </div>
+            </div>
+          </div>
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#fav-image"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#fav-image"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+
+        <!-- ----playlist พอเป็นเพลงไทย ไม่โชว์เพลง-->
+        <div class="my-fav-playlist container-fluid p-5 text-white text-center">
+          <h2 class="edu-title d-flex justify-content-center">เพลงที่ชอบ</h2>
+          <div class="embed-responsive w-100 h-100">
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/Z6YgwPLSzIE"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+      </div>
     </main>
     <footer>
       <!--  footer  -->
+      <div class="container-fluid p-5 bg-dark text-white text-center">
+        <div class="nav justify-content-center border-bottom pb-3 mb-3">
+          <a
+            href="https://www.facebook.com/profile.php?id=100001217091011"
+            class="me-4 text-reset"
+          >
+            <i class="bi bi-facebook" style="font-size: 2rem"></i>
+          </a>
+          <a
+            href="https://www.instagram.com/pepkonlawat/"
+            class="me-4 text-reset"
+          >
+            <i class="bi bi-instagram" style="font-size: 2rem"></i>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/konlawat-khathaphet-b877b5202/"
+            class="me-4 text-reset"
+          >
+            <i class="bi bi-linkedin" style="font-size: 2rem"></i>
+          </a>
+          <a href="https://github.com/pepkonlawat" class="me-4 text-reset">
+            <i class="bi bi-github" style="font-size: 2rem"></i>
+          </a>
+        </div>
+        <h6 class="text-center">Ⓒ 2023 Konlawat Khathaphet</h6>
+      </div>
     </footer>
     <!-- Bootstrap JavaScript Libraries -->
     <script
