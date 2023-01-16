@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- -------clild------- -->
+    <!-- div>ul>li -->
+    <div>
+        <ul>
+            <li></li>
+        </ul>
+    </div>
+
+    <!-- div>ul>li*3 -->
+    <div>
+        <ul>
+            <li>test</li>
+            <li>test</li>
+            <li>test</li>
+        </ul>
+    </div>
+
+    <!-- -------sibling------- -->
+    <!-- div>h1+p+h3 -->
+    <div>
+        <h1></h1>
+        <p></p>
+        <h3></h3>
+    </div>
+
+    <!-- ---------------climb up------------------ -->
+    <!--div>ul>(li*3)^^p  -->
+    <div>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <p></p>
+    <!-- div>ul>li^p -->
+    <div>
+        <ul>
+            <li></li>
+        </ul>
+        <p></p>
+    </div>
+    <!-- --------class------ -->
+    <!-- ul>li.itme$*5 -->
+    <ul>
+        <li class="itme1"></li>
+        <li class="itme2"></li>
+        <li class="itme3"></li>
+        <li class="itme4"></li>
+        <li class="itme5"></li>
+    </ul>
+    <!-- class ใช้กับ css // ID ใช้กับ javascript -->
+    <!-- ul>li.((item$)(#item$))*5 -->
+    ul>li.item$*5(#item$)*5
+
+    <!-- ul>li.item$@-*5 -->
+    <ul>
+        <li class="item5"></li>
+        <li class="item4"></li>
+        <li class="item3"></li>
+        <li class="item2"></li>
+        <li class="item1"></li>
+    </ul>
+    <!-- ul>li.item$@-10*5 -->
+    <ul>
+        <li class="item14"></li>
+        <li class="item13"></li>
+        <li class="item12"></li>
+        <li class="item11"></li>
+        <li class="item10"></li>
+    </ul>
+    <!-- ul>li.item$@10*5 -->
+    <ul>
+        <li class="item10"></li>
+        <li class="item11"></li>
+        <li class="item12"></li>
+        <li class="item13"></li>
+        <li class="item14"></li>
+    </ul>
+    <!-- ul>li#item$@5{item$@5}*5 -->
+    <ul>
+        <li id="item5">item5</li>
+        <li id="item6">item6</li>
+        <li id="item7">item7</li>
+        <li id="item8">item8</li>
+        <li id="item9">item9</li>
+    </ul>
+    <!-- ul>li#item$@5{$@5}*5 -->
+    <ul>
+        <li id="item5">5</li>
+        <li id="item6">6</li>
+        <li id="item7">7</li>
+        <li id="item8">8</li>
+        <li id="item9">9</li>
+    </ul>
+    <!-- ul>li#item${$}*5 -->
+    <ul>
+        <li id="item1">1</li>
+        <li id="item2">2</li>
+        <li id="item3">3</li>
+        <li id="item4">4</li>
+        <li id="item5">5</li>
+    </ul>
+
+    <!-- -------------- -->
+    <!-- -------------- -->
+    <!-- -------------- -->
+    <!-- -------------- -->
+    <!-- -------------- -->
+</body>
+
+</html>
