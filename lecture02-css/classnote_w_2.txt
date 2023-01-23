@@ -1,0 +1,7 @@
+levels of style sheet
+priority: [inline] > [Document-level style sheets] > [External style sheets]
+
+tag span มักใช้กับ content 
+tag div ใช้ได้ทั่วไป
+
+xhtml

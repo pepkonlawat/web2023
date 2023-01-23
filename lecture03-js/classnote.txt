@@ -1,0 +1,8 @@
+javascript auto detect type
+
+client-side
+
+server-side javascript compile to html before sent to client-side
+
+ข้อเสีย debug ยาก ไม่รู้ว่าเกิดบันทัดไหน
+
