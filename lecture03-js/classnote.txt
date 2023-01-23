@@ -6,3 +6,5 @@ server-side javascript compile to html before sent to client-side
 
 ข้อเสีย debug ยาก ไม่รู้ว่าเกิดบันทัดไหน
 
+alert -> popup window ทำได้แค่รับทราบอย่างเดียว
+confirm ->popup window ok หรือ cancel ได้
