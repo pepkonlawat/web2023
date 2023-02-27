@@ -59,15 +59,15 @@ app.get("/showage/:age", function (req, res) {
 });
 
 //updatestudent
-async function showAge(findAge) {
-  var key = { age: -1 };
-  var query = { age: { $lt: parseInt(findAge) } };
-  const findResult = await collection.find(query).sort(key).toArray();
-  return findResult;
+async function updateStudent(updateStudent) {
+  var query = { id: parseInt(updateStudent.id) };
+  var newvalue = { $set: updateStudent };
+  const updateResult = await collection.updateOne(query, newvalue);
+  return updateResult;
 }
-app.get("/showage/:age", function (req, res) {
-  console.log("Show age : %s", req.params.age);
-  showAge(req.params.age)
+app.put("/updateStudent/", function (req, res) {
+  console.log("updatestudent : %s", req.body);
+  updateStudent(req.body)
     .then((result) => {
       console.log(result);
       res.json(result);
@@ -75,23 +75,40 @@ app.get("/showage/:age", function (req, res) {
     .catch(console.error);
 });
 
-//insertstudent
-async function showAge(findAge) {
-  var key = { age: -1 };
-  var query = { age: { $lt: parseInt(findAge) } };
-  const findResult = await collection.find(query).sort(key).toArray();
-  return findResult;
+/* insertstudent */
+async function insertStudent(newStudent) {
+  //function
+  const insertResult = await collection.insertOne(newStudent);
+  return insertResult;
 }
-app.get("/showage/:age", function (req, res) {
-  console.log("Show age : %s", req.params.age);
-  showAge(req.params.age)
+app.post("/insertStudent", function (req, res) {
+  //call api
+  console.log("add new student  : %s", req.body);
+  insertStudent(req.body)
     .then((result) => {
       console.log(result);
       res.json(result);
     })
     .catch(console.error);
 });
-
+/* deletestudent */
+async function deleteStudent(id) {
+  //function
+  
+  var query = { id: parseInt(id) };
+  const deleteResult = await collection.deleteOne(query);
+  return deleteResult;
+}
+app.delete("/deleteStudent/:id", function (req, res) {
+  //call api
+  console.log("Delete student  ID: %s", req.params.id);
+  deleteStudent(req.params.id)
+    .then((result) => {
+      console.log(result);
+      res.json(result);
+    })
+    .catch(console.error);
+});
 dbConnect().catch(console.error);
 
 var server = app.listen(8081, function () {
