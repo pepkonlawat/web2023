@@ -1,52 +1,49 @@
-<script setup>
-import { ref } from "vue";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { useRouter } from "vue-router";
-const router = useRouter();
-const user = ref({
-  email: "",
-  password: "",
-});
-function signUp() {
-  const auth = getAuth();
-  createUserWithEmailAndPassword(auth, user.value.email, user.value.password)
-    .then((userCredentail) => {
-      console.log("Successfully signed up");
-      router.replace("/movies");
-    })
-    .catch((error) => {
-      console.log(error.code + ": " + error.message);
-      alert(error.code + "\n" + error.message);
-    });
-}
-</script>
 <template>
-  <h1>Sign up</h1>
-  <div class="mb-3">
-    <label for="" class="form-label">Email</label>
+  <div class="signup">
+    <h1>Sign-Up page</h1>
+    <input type="text" placeholder="Email address" v-model="user.email" /><br />
     <input
-      v-model="user.email"
-      type="email"
-      class="form-control"
-      name=""
-      id=""
-      aria-describedby="emailHelpId"
-      placeholder="abc@mail.com"
-    />
-    <small id="emailHelpId" class="form-text text-muted">Help text</small>
-  </div>
-  <div class="mb-3">
-    <label for="" class="form-label">Password</label>
-    <input
-      v-model="user.password"
       type="password"
-      class="form-control"
-      name=""
-      id=""
-      placeholder=""
-    />
+      placeholder="Password"
+      v-model="user.password"
+    /><br />
+    <button @click="signUp">Sign Up</button>
   </div>
-  <button @click="signUp()" type="button" class="btn btn-primary">
-    signup
-  </button>
 </template>
+<script>
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+export default {
+  name: "SignUp",
+  data() {
+    return {
+      user: {
+        email: "",
+        password: "",
+      },
+    };
+  },
+  methods: {
+    signUp() {
+      const auth = getAuth();
+      createUserWithEmailAndPassword(auth, this.user.email, this.user.password)
+        .then((userCredential) => {
+          console.log("Successfully register");
+          this.$router.replace("/movies");
+        })
+        .catch((error) => {
+          console.log(error.code + ": " + error.message);
+          alert(error.code + "\n" + error.message);
+        });
+    },
+  },
+};
+</script>
+<style>
+@media (min-width: 1024px) {
+  .about {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+}
+</style>

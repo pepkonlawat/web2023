@@ -1,40 +1,27 @@
 import { createRouter, createWebHistory } from "vue-router";
 import { onAuthStateChanged, getAuth } from "firebase/auth";
-import HomeView from "../views/HomeView.vue";
-import MovieList from "../views/MoviesListView.vue";
-import SignIn from "../views/SignInView.vue";
-import SignUp from "../views/SignUpView.vue";
+import CityList from "../views/CityList.vue";
+import Detail from "../views/Detail.vue";
+import SignIn from "../views/SignIn.vue";
+import SignUp from "../views/SignUp.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: "/",
-      redirect: "/signin",
-    },
-    {
-      path: "/:catchAll(.*)",
-      redirect: "/signin",
-    },
-    {
-      path: "/home",
-      name: "home",
-      component: HomeView,
-    },
-    {
-      path: "/about",
-      name: "about",
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import("../views/AboutView.vue"),
-    },
-    {
-      path: "/movies",
-      name: "movielist",
-      component: MovieList,
+      name: "citylist",
+      component: CityList,
       meta: {
-        requiresAuth: true,
+        requireAuth: true,
+      },
+    },
+    {
+      path: "/detail/:city",
+      name: "detail",
+      component: Detail,
+      meta: {
+        requireAuth: true,
       },
     },
     {

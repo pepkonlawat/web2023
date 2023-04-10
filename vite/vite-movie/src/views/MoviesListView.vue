@@ -1,83 +1,122 @@
-<script setup>
-import { ref, onMounted } from "vue";
-import {
-  collection,
-  onSnapshot,
-  doc,
-  setDoc,
-  updateDoc,
-  deleteDoc,
-  getFirestore,
-} from "firebase/firestore";
-const movies = ref({});
-const movieID = ref({});
-const movieInput = ref();
-const editMovies = ref([]);
-onMounted(() => {
-  const db = getFirestore();
-  const colRef = collection(db, "movies");
-  onSnapshot(colRef, (snapshot) => {
-    movies.value = snapshot.docs.map((doc) => doc.data());
-    movieID.value = snapshot.docs.map((doc) => doc.id);
-    console.log(movies.value);
-    console.log(movieID.value);
-  });
-});
-async function addMovie() {
-  const db = getFirestore();
-  const docRef = doc(collection(db, "movies"));
-  const dataObj = { name: movieInput.value };
-  const insertRef = await setDoc(docRef, dataObj);
-}
-async function updateMovie(key) {
-  const db = getFirestore();
-  const docRef = doc(db, "movies/" + movieID.value[key]);
-  const dataObj = { name: editMovies.value[key] };
-  const insertRef = await updateDoc(docRef, dataObj);
-}
-async function deleteMovie(key) {
-  const db = getFirestore();
-  const docRef = doc(db, "movies/" + this.movieIds[key]);
-  const deleteRef = await deleteDoc(docRef);
-}
-</script>
 <template>
-  <div class="movieslist">
-    <h2>Movie มาแล้วจ้า</h2>
-    <div class="mb-3">
-      <label for="" class="form-label">Name</label>
-      <input
-        v-model="movieInput"
-        @keyup.enter="addMovie"
-        type="text"
-        class="form-control"
-        name=""
-        id=""
-        aria-describedby="helpId"
-        placeholder=""
-      />
-      <small id="helpId" class="form-text text-muted">Help text</small>
-    </div>
+  <div class="movielist">
+    <button @click="logout">Sign Out</button>
 
-    <button @click="addMovie" type="button" class="btn btn-primary">Add</button>
+    <h1>Movie List</h1>
+    <input
+      type="text"
+      placholder="movie name"
+      v-model="movie"
+      @keyup.enter="addMovie"
+    />
+    <button type="button" class="btn btn-primary" @click="addMovie">
+      Add Movie
+    </button>
 
     <ul>
-      <li v-for="(movie, key) in movies" :key="key">
-        {{ movie.name }}
-        <input
-          v-model="editMovies[key]"
-          @keyup.enter="updateMovie(key)"
-          type="text"
-          class="form-control"
-          name=""
-          id=""
-          aria-describedby="helpId"
-          placeholder=""
-        />
-        <button @click="deleteMovie(key)" type="button" class="btn btn-danger">
-          delete
-        </button>
+      <li v-for="(amovie, key) in movies" :key="key">
+        <div>
+          <p>{{ amovie.name }}</p>
+        </div>
+        <div>
+          <input
+            type="text"
+            v-model="editMovie[key]"
+            @keyup.enter="updateMovie(key)"
+          />
+        </div>
+        <div>
+          <button
+            type="button"
+            class="btn btn-danger"
+            @click="deleteMovie(key)"
+          >
+            Delete
+          </button>
+        </div>
       </li>
     </ul>
   </div>
 </template>
+
+<script>
+import {
+  collection,
+  onSnapshot,
+  doc,
+  getFirestore,
+  setDoc,
+  updateDoc,
+  deleteDoc,
+} from "firebase/firestore";
+import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
+export default {
+  name: "MovieList",
+  data() {
+    return {
+      movies: {},
+      movieIds: {},
+      movie: null,
+      editMovie: [],
+      auth: getAuth(),
+      isLoggedIn: false,
+    };
+  },
+  mounted() {
+    onAuthStateChanged(this.auth, (user) => {
+      if (user) {
+        this.isLoggedIn = true;
+      } else {
+        this.isLoggedIn = false;
+      }
+    });
+
+    const db = getFirestore();
+    const colRef = collection(db, "movies");
+    onSnapshot(colRef, (snapshot) => {
+      this.movies = snapshot.docs.map((doc) => doc.data());
+      this.movieIds = snapshot.docs.map((doc) => doc.id);
+      console.log(this.movies);
+      console.log(this.movieIds);
+    });
+  },
+  methods: {
+    async addMovie() {
+      const db = getFirestore();
+      const docRef = doc(collection(db, "movies"));
+      const dataObj = { name: this.movie };
+      const insertRef = await setDoc(docRef, dataObj);
+    },
+    async updateMovie(key) {
+      const db = getFirestore();
+      const docRef = doc(db, "movies/" + this.movieIds[key]);
+      const dataObj = { name: this.editMovie[key] };
+      const updateRef = await updateDoc(docRef, dataObj);
+    },
+    async deleteMovie(key) {
+      const db = getFirestore();
+      const docRef = doc(db, "movies/" + this.movieIds[key]);
+      const deleteRef = await deleteDoc(docRef);
+    },
+    logout() {
+      signOut(this.auth)
+        .then(() => {
+          this.$router.replace("/signin");
+        })
+        .catch((error) => {
+          alert(error.message);
+        });
+    },
+  },
+};
+</script>
+
+<style>
+@media (min-width: 1024px) {
+  .about {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+}
+</style>
