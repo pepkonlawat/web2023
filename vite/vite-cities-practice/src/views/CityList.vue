@@ -1,4 +1,5 @@
 <script setup>
+import Header from "../components/Header.vue";
 import { onMounted, ref } from "vue";
 import {
   collection,
@@ -24,32 +25,28 @@ onMounted(() => {
 });
 </script>
 <template>
-  <div class="citylist">
-    <h4>City List</h4>
-    <div class="container">
-      <h2>Panel Heading</h2>
-      <div class="panel panel-default">
-        <div class="panel-heading">Panel Heading</div>
-        <div class="panel-body">
-          <div class="card-group">
-            <div
-              class="card"
-              v-for="(city, key) in cities"
-              :key="key"
-              style="width: 18rem"
-            >
+  <Header />
+  <div class="container text-center">
+    <h5>EGCI437 Practice</h5>
+    <div class="card text-center">
+      <div class="card-header">List of Cities</div>
+      <div class="card-body">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+          <div class="col" v-for="(city, key) in cities">
+            <div class="card">
               <img
                 :src="imagePath + city.image"
                 class="card-img-top"
                 alt="..."
               />
               <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+                <h5 class="card-title">{{ city.name }}</h5>
                 <p class="card-text">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
+                  {{ city.detail }}
                 </p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <router-link :to="'/detail/' + city.name">
+                  <a href="#" class="btn btn-success">Detail</a>
+                </router-link>
               </div>
             </div>
           </div>
@@ -57,7 +54,6 @@ onMounted(() => {
       </div>
     </div>
   </div>
-  bs5-pa
 </template>
 
 <style scoped></style>
